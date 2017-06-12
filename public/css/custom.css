@@ -1,0 +1,53 @@
+
+body {
+    margin-top: 75px !important;
+    /*background-image: url("../images/tutoring-background.jpg");*/
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#logout-form>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+#logout-form>a:hover, #logout-form>a:focus {
+    text-decoration: none;
+    color: #fff;
+    background-color: #ccc;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer div {
+    font-size: 12px;
+    margin-top: 2em;
+    padding: 0.75em 0;
+    border-top: 1px solid #ccc;
+}
+
+.page-group {
+    background-color: #F5F5F5;
+    box-shadow: 6px 5px 5px #ccc;
+}
+
+.form-header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.form {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

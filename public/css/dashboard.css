@@ -1,0 +1,43 @@
+div.card-header {
+    margin-bottom: 1.5em !important;
+}
+.select-box-title {
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.manage-buttons {
+    padding-top: 3em;
+}
+
+#addSub, #removeSub {
+    font-size: 1em;
+}
+
+.list-wrapper {
+    width: auto;
+    height: 250px;
+    overflow: auto;
+}
+
+#enrollmentDetails {
+    display: none;
+}
+
+.chip {
+    color: rgba(0,0,0,0.7);
+    font-weight: 400;
+    background-color: #e4e4e4;
+    padding: 12px 20px;
+    margin: 8px 8px;
+    -webkit-border-radius: 25px 25px;
+    -moz-border-radius: 25px 25px;
+    border-radius: 25px 25px;
+}
+
+.course-icon {
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+}
