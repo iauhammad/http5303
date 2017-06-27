@@ -1,73 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>TMS - Plus</title>
 
-    <title>@yield('title') - TMS-Plus</title>
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script src="{{ asset('js/jquery-3.1.0.min.js') }}" type="text/javascript"></script>
+    <style>
+        body {
+            margin-top: 0 !important;
+        }
+    </style>
 </head>
 <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">TMS Plus</a>
-            </div>
-            <nav class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    @if(Sentinel::check())
-                        <li><a href="/dashboard">Dashboard</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ Sentinel::getUser()->display_name }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/profile">Profile</a></li>
-                                <li><a href="/settings">Settings</a></li>
-                                <li class="divider"></li>
-                                <li>
-                                    <form action="/logout" method="post" id="logout-form">
-                                        {{ csrf_field() }}
-                                    </form>
-                                    <a href="#" onclick="document.getElementById('logout-form').submit()">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    @else
-                        <li><a href="/login">Log in</a></li>
-                        <li><a href="/register">Register</a></li>
-                    @endif
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo">TMS - Plus</a>
+        <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            @if(Sentinel::check())
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="logged_user">
+                        Welcome, {{ Sentinel::getUser()->display_name }}
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+                <ul id="logged_user" class="dropdown-content">
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li class="divider"></li>
+                    <li>
+                        <form action="/logout" method="post" id="logout-form">
+                            {{ csrf_field() }}
+                        </form>
+                        <a href="#" onclick="document.getElementById('logout-form').submit()">Logout</a>
+                    </li>
                 </ul>
-            </nav>
-        </div>
-    </header>
+            @else
+                <li><a href="/login">Log in</a></li>
+                <li><a href="/register">Register</a></li>
+            @endif
+        </ul>
+        <ul class="side-nav" id="mobile-menu">
+            <li><a href="/">Home</a></li>
+            @if(Sentinel::check())
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="loggedUser">
+                        Welcome, {{ Sentinel::getUser()->display_name }}
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+                <ul id="loggedUser" class="dropdown-content">
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li class="divider"></li>
+                    <li>
+                        <form action="/logout" method="post" id="logout-form">
+                            {{ csrf_field() }}
+                        </form>
+                        <a href="#" onclick="document.getElementById('logout-form').submit()">Logout</a>
+                    </li>
+                </ul>
+            @else
+                <li><a href="/login">Log in</a></li>
+                <li><a href="/register">Register</a></li>
+            @endif
+        </ul>
+    </div>
+</nav>
 
-    <main>
+<main>
+    @yield('body')
+</main>
+
+<footer class="page-footer teal">
+    <div class="footer-copyright">
         <div class="container">
-            @yield('body')
+            Copyright &copy; 2017 - TMS Plus | Irfaan Auhammad
         </div>
-    </main>
+    </div>
+</footer>
 
-    <footer class="footer">
-        <div class="container">Copyright &copy; 2017 | TMS Plus</div>
-    </footer>
-
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{{ asset('js/materialize.js') }}"></script>
+<script src="{{ asset('js/init.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".button-collapse").sideNav();
+        $(".dropdown-button").dropdown();
+    });
+</script>
 </body>
 </html>

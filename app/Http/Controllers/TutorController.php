@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Lesson;
 use App\SelectedSubject;
+use App\Student;
 use App\Subject;
 use App\Tutor;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Sentinel;
 use Illuminate\Http\Request;
@@ -15,7 +18,35 @@ class TutorController extends Controller
 {
     // GET: /dashboard
     public function index() {
-        return view('tutor.index')->with('menu', 'dashboard');
+        // -- Retrieve statistics for tutor dashboard
+        // -- ---------------------------------------
+        $tutor = Tutor::where('user_id', Sentinel::getUser()->id)->first();
+
+        // -- Get tutor's number of students
+        $numStudents = Student::where('tutor_id', $tutor->id)->count();
+
+        // -- Get tutor's total revenue
+        $totalAmount = Lesson::where('tutor_id', $tutor->id)
+                       ->where('status', 'Done')
+                       ->sum('fee');
+
+        // -- Get tutor's total hours taught
+        $totalHours = Lesson::where('tutor_id', $tutor->id)
+                      ->where('status', 'Done')
+                      ->sum('duration');
+
+        // -- Get number of upcoming lessons
+        $numLessons = Lesson::where('tutor_id', $tutor->id)
+                      ->where('status', 'Upcoming')
+                      ->where('lesson_date', '>=', Carbon::today())
+                      ->count();
+
+        // -- Return dashboard view with global statistics
+        return view('tutor.index')->with('menu', 'dashboard')
+                                  ->with('numStudents', $numStudents)
+                                  ->with('totalRevenue', $totalAmount)
+                                  ->with('totalHours', $totalHours)
+                                  ->with('numLessons', $numLessons);
     }
 
     // GET: /profile-setup

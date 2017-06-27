@@ -109,6 +109,28 @@ return [
         'parent_lname' => [
             'required' => 'The parent last name field is required.',
         ],
+        'student_id' => [
+            'required' => 'Please select a student.'
+        ],
+        'subject_id' => [
+            'required' => 'Please select a subject.'
+        ],
+        'lesson_date' => [
+            'required' => 'Please indicate lesson date.'
+        ],
+        'start_time' => [
+            'required' => 'Please indicate start time.'
+        ],
+        'end_time' => [
+            'required' => 'Please indicate end time.'
+        ],
+        'duration' => [
+            'required' => 'Please enter valid start and end time.',
+            'min' => 'The duration must be at least half an hour.'
+        ],
+        'fee' => [
+            'min' => 'The lesson fee cannot be $0.00.'
+        ],
     ],
 
     /*

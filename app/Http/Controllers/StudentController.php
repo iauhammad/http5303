@@ -6,6 +6,7 @@ use App\Enrollment;
 use App\SelectedSubject;
 use App\Student;
 use App\Subject;
+use App\Tutor;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Sentinel;
@@ -21,8 +22,8 @@ class StudentController extends Controller
     public function index()
     {
         // List of students
-        //$students = Student::all();
-        $students = Student::where('tutor_id', Sentinel::getUser()->id)->get();
+        $tutor = Tutor::where('user_id', Sentinel::getUser()->id)->first();
+        $students = Student::where('tutor_id', $tutor->id)->get();
         return view('student.index')->with('students', @$students)
                                     ->with('menu', 'students');
     }

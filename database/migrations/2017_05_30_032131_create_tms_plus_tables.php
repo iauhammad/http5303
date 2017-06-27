@@ -116,6 +116,8 @@ class CreateTmsPlusTables extends Migration
                 $table->time('start_time');
                 $table->time('end_time');
                 $table->decimal('duration');
+                $table->string('location');
+                $table->decimal('fee', 5, 2);
                 $table->enum('status', ['Upcoming', 'Done', 'Cancelled']);
                 $table->timestamps();
 

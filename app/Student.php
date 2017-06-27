@@ -13,4 +13,13 @@ class Student extends Model
     public function getLastName() {
         return $this->last_name;
     }
+    public function getFullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    public function lessons()
+    {
+        return $this->belongsToMany('App\Lesson', 'student_id');
+    }
 }

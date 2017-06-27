@@ -1,4 +1,7 @@
-
+img {
+    width: 100% !important;
+    height: auto;
+}
 body {
     margin-top: 75px !important;
     /*background-image: url("../images/tutoring-background.jpg");*/

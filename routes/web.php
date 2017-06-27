@@ -33,23 +33,28 @@ Route::group(['middleware' => 'visitors'], function() {
     Route::post('/reset/{resetCode}', 'ForgotPasswordController@postResetPassword');
 });
 
+/* Route to activate a user's account */
+Route::get('/activate/{activationCode}', 'RegistrationController@activate');
+
 /* Route for logout */
-/* ---------------- */
 Route::post('/logout', 'LoginController@logout');
 
 
-/* Route for Dashboard */
-/* ------------------- */
+/* Routes for Tutor's Dashboard */
+/* ---------------------------- */
 Route::get('/dashboard', 'TutorController@index');
 
-Route::get('/profile-setup', 'TutorController@setup');
+/* Routes for tutor's profile */
+Route::get('/profile-setup', 'TutorController@setup')->name('tutor.edit');
 Route::post('/profile-setup', 'TutorController@postSetup');
 
+/* Routes for tutor's subjects*/
 Route::get('/subjects', 'TutorController@subjects');
 Route::post('/addSubject', 'TutorController@addSubject');
 Route::post('/delSubject', 'TutorController@delSubject');
 Route::post('/newSubject', 'TutorController@newSubject');
 
+/* Routes for students enrollment */
 Route::get('students/enroll', 'StudentController@enrollStudent')->name('students.enroll');
 Route::resource('students', 'StudentController');
 Route::get('/delete-student/{id}', 'StudentController@confirmDelete');
@@ -58,7 +63,7 @@ Route::post('/coursesAvailable', 'StudentController@coursesAvailable');
 Route::post('/enrollStudent', 'StudentController@enrollToCourse');
 Route::post('/disenrollStudent', 'StudentController@disenrollCourse');
 
-Route::get('/profile-details/{id}', 'TutorController@show');
-
-/* Route to activate a user's account */
-Route::get('/activate/{activationCode}', 'RegistrationController@activate');
+/* Routes for tutor's lesson sessions */
+Route::get('/lessons/history', 'LessonsController@history')->name('lessons.history');
+Route::resource('lessons', 'LessonsController');
+Route::post('/studentCourses', 'LessonsController@coursesEnrolled');

@@ -24,7 +24,7 @@
                             <!-- First Name -->
                             <div class="col-md-6">
                                 <div class="form-group label-floating">
-                                    <label class="control-label">Fist Name</label>
+                                    <label class="control-label">First Name</label>
                                     <input type="text" class="form-control" name="first_name"
                                            value="{{ Request::old('first_name') }}" >
                                 </div>

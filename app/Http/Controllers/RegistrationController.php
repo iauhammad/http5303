@@ -17,6 +17,8 @@ class RegistrationController extends Controller
 
     // POST: /register
     public function postRegister(Request $request) {
+        $this->validate($request, $this->rules);
+
         // Register a new user
         //$user = Sentinel::registerAndActivate($request->all());
         $user = Sentinel::register($request->all());
@@ -47,6 +49,14 @@ class RegistrationController extends Controller
             return redirect('/');
         }
     }
+
+    // Validation rules
+    private $rules = [
+        'email' => 'required|email|unique:users',
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'password' => 'required|confirmed'
+    ];
 
     /*
      * Private function to send activation code to a user by email

@@ -41,3 +41,27 @@ div.card-header {
     vertical-align: middle;
     cursor: pointer;
 }
+
+#custom-handle {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+}
+
+.slider-container {
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    margin-bottom: 2em;
+}
+
+.past-date {
+    color: coral;
+}
+
+.cancelled-session {
+    text-decoration: line-through;
+    text-decoration-color: orange;
+}
